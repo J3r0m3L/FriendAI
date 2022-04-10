@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <script src="eel.js"></script>
+    <script>
+        eel.main()
+        function change() {
+            if (status_toggle.checked) {
+                eel.toggle('true')
+                document.getElementById('status').style.color = '#56E39F';
+                document.getElementById('status').innerHTML = 'active';
+                document.getElementById('dropdown').classList.add('active');
+            }
+            else {
+                eel.toggle('false')
+                document.getElementById('status').style.color = '#E53D00';
+                document.getElementById('status').innerHTML = 'inactive';
+                document.getElementById('dropdown').classList.remove('active');
+            }
+        }
+        function addHistory(history) {
+            var div = document.getElementById("histoprint");
+            div.innerHTML += "<br>" + history;
+        }
+        eel.expose(addHistory)
+    </script>
+</head>
+
+<body>
+    <div class='head'>
+        <div class='sub_head'>
+            <h1>status:</h1>
+            <h2 id='status'>inactive</h2>
+        </div>
+        <input type="checkbox" id="status_toggle" onclick="change()">
+    </div>
+    <div id='dropdown'>
+        <h1>to use: press ctrl + enter</h1>
+        <div class='history'>
+            <h1>conversation history:</h1>
+            <div id="histoprint"></div>
+        </div>
+    </div>
+</body>
+</html>
